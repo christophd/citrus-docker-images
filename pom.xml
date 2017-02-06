@@ -34,7 +34,18 @@
                   <tag>latest</tag>
                   <tag>2.7</tag>
                 </tags>
-                <dockerFileDir>2.7</dockerFileDir>
+                <dockerFileDir>citrus/2.7</dockerFileDir>
+              </build>
+            </image>
+            <image>
+              <alias>citrus-admin</alias>
+              <name>consol/citrus-admin</name>
+              <build>
+                <tags>
+                  <tag>latest</tag>
+                  <tag>1.0.0-beta-4</tag>
+                </tags>
+                <dockerFileDir>citrus-admin/1.0.0-beta</dockerFileDir>
               </build>
             </image>
           </images>
