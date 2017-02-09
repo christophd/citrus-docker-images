@@ -8,6 +8,10 @@
   <version>1.0.0</version>
   <packaging>pom</packaging>
 
+  <properties>
+    <citrus.admin.version>1.0.0-beta-5</citrus.admin.version>
+  </properties>
+
   <build>
     <pluginManagement>
       <plugins>
@@ -20,6 +24,31 @@
     </pluginManagement>
 
     <plugins>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>exec-maven-plugin</artifactId>
+        <version>1.2.1</version>
+        <executions>
+          <execution>
+            <id>download-citrus-admin</id>
+            <phase>process-resources</phase>
+            <goals>
+              <goal>exec</goal>
+            </goals>
+            <configuration>
+              <skip>${settings.offline}</skip>
+              <executable>curl</executable>
+              <arguments>
+                <argument>file://${settings.localRepository}/com/consol/citrus/citrus-admin-web/${citrus.admin.version}/citrus-admin-web-${citrus.admin.version}.jar</argument>
+                <argument>--create-dirs</argument>
+                <argument>-o</argument>
+                <argument>src/main/docker/citrus-admin/latest/citrus-admin-web.jar</argument>
+              </arguments>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+      
       <plugin>
         <groupId>io.fabric8</groupId>
         <artifactId>docker-maven-plugin</artifactId>
@@ -42,10 +71,20 @@
               <name>consol/citrus-admin</name>
               <build>
                 <tags>
-                  <tag>latest</tag>
                   <tag>1.0.0-beta-4</tag>
                 </tags>
                 <dockerFileDir>citrus-admin/1.0.0-beta</dockerFileDir>
+              </build>
+            </image>
+            <image>
+              <alias>citrus-admin</alias>
+              <name>consol/citrus-admin</name>
+              <build>
+                <tags>
+                  <tag>latest</tag>
+                  <tag>${citrus.admin.version}</tag>
+                </tags>
+                <dockerFileDir>citrus-admin/latest</dockerFileDir>
               </build>
             </image>
           </images>

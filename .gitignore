@@ -15,3 +15,4 @@ bin
 .pmd
 logs
 node_modules
+citrus-admin-web.jar
