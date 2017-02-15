@@ -26,5 +26,6 @@ RUN cd citrus-project && mvn install clean
 ENV APP_DIR /maven
 
 ONBUILD WORKDIR ${APP_DIR}
-
+# By default copy the whole maven folder content to current work dir
+ONBUILD COPY . .
 CMD mvn install
