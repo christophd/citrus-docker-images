@@ -1,8 +1,8 @@
 FROM consol/citrus
 MAINTAINER citrusframework.org <citrus-dev-l@consol.de>
 
-ENV BUILD_DATE=2017-02-06
-ENV BUILD_VERSION=1.0.0
+ENV BUILD_DATE=2017-02-20
+ENV BUILD_VERSION=1.0.1
 
 EXPOSE 8080
 
