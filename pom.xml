@@ -34,7 +34,7 @@
               <alias>citrus</alias>
               <name>consol/citrus:${citrus.version}</name>
               <build>
-                <dockerFile>${project.basedir}/src/main/docker/Dockerfile</dockerFile>
+                <dockerFileDir>${project.basedir}/src/main/docker/default</dockerFileDir>
               </build>
               <run>
                 <namingStrategy>alias</namingStrategy>
@@ -48,7 +48,7 @@
               <alias>citrus-alpine</alias>
               <name>consol/citrus:${citrus.version}-alpine</name>
               <build>
-                <dockerFile>${project.basedir}/src/main/docker/Dockerfile.alpine</dockerFile>
+                <dockerFileDir>${project.basedir}/src/main/docker/alpine</dockerFileDir>
               </build>
             </image>
           </images>
