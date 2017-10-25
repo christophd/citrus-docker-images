@@ -5,8 +5,12 @@
   <groupId>com.consol.citrus</groupId>
   <artifactId>citrus-docker-images</artifactId>
   <name>citrus-docker-images</name>
-  <version>1.0.0</version>
+  <version>1.0.3</version>
   <packaging>pom</packaging>
+
+  <properties>
+    <citrus.version>2.7</citrus.version>
+  </properties>
 
   <build>
     <pluginManagement>
@@ -14,7 +18,7 @@
         <plugin>
           <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
-          <version>0.19.0</version>
+          <version>0.22.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -27,37 +31,24 @@
           <verbose>true</verbose>
           <images>
             <image>
-              <name>consol/citrus:2.7.1-SNAPSHOT</name>
+              <alias>citrus</alias>
+              <name>consol/citrus:${citrus.version}</name>
               <build>
-                <tags>
-                  <tag>latest</tag>
-                </tags>
-                <dockerFile>citrus/latest/Dockerfile.debian</dockerFile>
+                <dockerFile>${project.basedir}/src/main/docker/Dockerfile</dockerFile>
               </build>
+              <run>
+                <namingStrategy>alias</namingStrategy>
+                <log>
+                  <enabled>true</enabled>
+                  <color>green</color>
+                </log>
+              </run>
             </image>
             <image>
-              <name>consol/citrus:2.7.1-SNAPSHOT-alpine</name>
+              <alias>citrus-alpine</alias>
+              <name>consol/citrus:${citrus.version}-alpine</name>
               <build>
-                <dockerFile>citrus/latest/Dockerfile.alpine</dockerFile>
-              </build>
-            </image>
-            <image>
-              <name>consol/citrus:2.7</name>
-              <build>
-                <dockerFile>citrus/2.7/Dockerfile.debian</dockerFile>
-              </build>
-            </image>
-            <image>
-              <name>consol/citrus:2.7-alpine</name>
-              <build>
-                <dockerFile>citrus/2.7/Dockerfile.alpine</dockerFile>
-              </build>
-            </image>
-            <image>
-              <alias>citrus-admin</alias>
-              <name>consol/citrus-admin:1.0.0-beta-4</name>
-              <build>
-                <dockerFileDir>citrus-admin/1.0.0-beta-4</dockerFileDir>
+                <dockerFile>${project.basedir}/src/main/docker/Dockerfile.alpine</dockerFile>
               </build>
             </image>
           </images>
@@ -68,56 +59,20 @@
 
   <profiles>
     <profile>
-      <id>citrus-admin-snapshot</id>
-      <properties>
-        <citrus.admin.version>1.0.0-beta-5</citrus.admin.version>
-      </properties>
-
+      <id>docker</id>
       <build>
         <plugins>
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>exec-maven-plugin</artifactId>
-            <version>1.2.1</version>
-            <executions>
-              <execution>
-                <id>download-citrus-admin</id>
-                <phase>process-resources</phase>
-                <goals>
-                  <goal>exec</goal>
-                </goals>
-                <configuration>
-                  <skip>${settings.offline}</skip>
-                  <executable>curl</executable>
-                  <arguments>
-                    <argument>file://${settings.localRepository}/com/consol/citrus/citrus-admin-web/${citrus.admin.version}/citrus-admin-web-${citrus.admin.version}.jar</argument>
-                    <argument>--create-dirs</argument>
-                    <argument>-o</argument>
-                    <argument>src/main/docker/citrus-admin/latest/citrus-admin-web.jar</argument>
-                  </arguments>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-
-          <plugin>
             <groupId>io.fabric8</groupId>
             <artifactId>docker-maven-plugin</artifactId>
-            <configuration>
-              <verbose>true</verbose>
-              <images>
-                <image>
-                  <alias>citrus-admin</alias>
-                  <name>consol/citrus-admin:${citrus.admin.version}</name>
-                  <build>
-                    <tags>
-                      <tag>latest</tag>
-                    </tags>
-                    <dockerFileDir>citrus-admin/latest</dockerFileDir>
-                  </build>
-                </image>
-              </images>
-            </configuration>
+            <executions>
+              <execution>
+                <id>build</id>
+                <goals>
+                  <goal>build</goal>
+                </goals>
+              </execution>
+            </executions>
           </plugin>
         </plugins>
       </build>

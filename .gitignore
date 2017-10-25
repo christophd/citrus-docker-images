@@ -3,8 +3,6 @@ target
 .classpath
 .settings
 .idea
-test.history
-test-output
 .DS_Store
 *.iml
 *.ipr
@@ -13,6 +11,3 @@ test-output
 bin
 .codepro
 .pmd
-logs
-node_modules
-citrus-admin-web.jar
