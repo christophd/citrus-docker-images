@@ -2,7 +2,7 @@ FROM maven:3.5.0-jdk-8-alpine
 
 MAINTAINER citrusframework.org <citrus-dev-l@consol.de>
 
-ENV BUILD_DATE=2017-10-25
+ENV BUILD_DATE=2017-10-26
 
 RUN mkdir citrus-project
 RUN mkdir -p citrus-project/src/test/java/com/consol/citrus/
