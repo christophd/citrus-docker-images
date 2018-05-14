@@ -5,11 +5,11 @@
   <groupId>com.consol.citrus</groupId>
   <artifactId>citrus-docker-images</artifactId>
   <name>citrus-docker-images</name>
-  <version>1.0.3</version>
+  <version>1.0.4</version>
   <packaging>pom</packaging>
 
   <properties>
-    <citrus.version>2.7.3</citrus.version>
+    <citrus.version>2.7.4</citrus.version>
   </properties>
 
   <build>
