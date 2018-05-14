@@ -9,7 +9,7 @@
   <packaging>pom</packaging>
 
   <properties>
-    <citrus.version>2.7.2</citrus.version>
+    <citrus.version>2.7.3</citrus.version>
   </properties>
 
   <build>
