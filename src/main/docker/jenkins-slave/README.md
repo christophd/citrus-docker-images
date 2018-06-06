@@ -22,4 +22,6 @@ Add to your `Jenkinsfile` the following code:
             }
 ```
 
-For more details how to configure a `containerTemplate`, see the document [kubernetes-plugin - Container Configuration](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md#container-configuration)
+For more details how to configure a `containerTemplate`, see the documentations:
+ * [kubernetes-plugin - Container Configuration](https://github.com/jenkinsci/kubernetes-plugin/blob/master/README.md#container-configuration), 
+ * [OpenShift - Example BuildConfig using the Jenkins Kubernetes Plug-in](https://docs.openshift.org/latest/using_images/other_images/jenkins.html#using-the-jenkins-kubernetes-plug-in)
