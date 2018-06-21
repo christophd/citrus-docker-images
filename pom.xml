@@ -5,11 +5,11 @@
   <groupId>com.consol.citrus</groupId>
   <artifactId>citrus-docker-images</artifactId>
   <name>citrus-docker-images</name>
-  <version>1.0.5</version>
+  <version>1.0.6</version>
   <packaging>pom</packaging>
 
   <properties>
-    <citrus.version>2.7.5</citrus.version>
+    <citrus.version>2.7.6</citrus.version>
   </properties>
 
   <build>
@@ -18,7 +18,15 @@
         <plugin>
           <groupId>io.fabric8</groupId>
           <artifactId>docker-maven-plugin</artifactId>
-          <version>0.22.1</version>
+          <version>0.26.0</version>
+          <executions>
+            <execution>
+              <id>auto-build</id>
+              <goals>
+                <goal>build</goal>
+              </goals>
+            </execution>
+          </executions>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -56,27 +64,4 @@
       </plugin>
     </plugins>
   </build>
-
-  <profiles>
-    <profile>
-      <id>docker</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>io.fabric8</groupId>
-            <artifactId>docker-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>build</id>
-                <goals>
-                  <goal>build</goal>
-                </goals>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-  </profiles>
-
 </project>

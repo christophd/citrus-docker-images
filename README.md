@@ -44,7 +44,7 @@ bootstrap the complete Citrus Docker image:
           <alias>my-app-tests</alias>
           <name>citrus/my-app-tests:${project.version}</name>
           <build>
-            <from>consol/citrus:2.7.5</from>
+            <from>consol/citrus:2.7.6</from>
             <tags>
               <tag>latest</tag>
             </tags>
